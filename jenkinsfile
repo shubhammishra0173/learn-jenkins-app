@@ -25,15 +25,14 @@ pipeline {
         stage('Test') {
             steps {
                 sh '''
-                    echo "Test stage" Checking if build/index.html exists"
-            ls -la build/
-            if [ -f build/index.html ]; 
-            then
-                echo "✅ index.html exists."
-            else
-                echo "❌ index.html not found!"
-                exit 1
-                fi
+                    echo "Test stage: Checking if build/index.html exists"
+                    ls -la build/
+                    if [ -f build/index.html ]; then
+                        echo "✅ index.html exists."
+                    else
+                        echo "❌ index.html not found!"
+                        exit 1
+                    fi
                 '''
             }
         }
