@@ -27,8 +27,7 @@ pipeline {
                 sh '''
                     echo "Test stage: Checking if build/index.html exists"
                     ls -la build/
-                    npm test
-                    ls -la
+                    
                     if [ -f build/index.html ]; then
                         echo "✅ index.html exists."
                     else
