@@ -9,9 +9,7 @@ pipeline {
                 image 'node:18-alpine'
                 reuseNode true
             }
-        }
-           
-            steps {
+             steps {
                 sh '''
                ls -la
                node --version
@@ -21,6 +19,9 @@ pipeline {
                ls -la
                 '''
             }
+        }
+           
+           
              stage('Test') {
             steps {
                 
@@ -31,6 +32,6 @@ pipeline {
                 '''
             }
         }
-        
+        }
     }
 }
