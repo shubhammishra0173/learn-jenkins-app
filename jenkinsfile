@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        NETLIFY_SITE_ID = '4da12713-18ab-4f6c-8554-3a4dc20457c6'
+        NETLIFY_SITE_ID = '508480a7-51d3-44f4-920f-5a8f2604e9a1'
         NETLIFY_AUTH_TOKEN = credentials('netlify-token')
     }
 
@@ -85,10 +85,11 @@ pipeline {
             }
             steps {
                 sh '''
-                apk add --no-cache bash
-                npx netlify-cli deploy --dir=build --site=$NETLIFY_SITE_ID --auth=$NETLIFY_AUTH_TOKEN --prod --build false
-
-                    
+                    npm install netlify-cli
+                    node_modules/.bin/netlify --version
+                    echo "Deploying to staging. Site ID: $NETLIFY_SITE_ID"
+                    node_modules/.bin/netlify status
+                    node_modules/.bin/netlify deploy --dir=build
                 '''
             }
         }
@@ -120,7 +121,7 @@ pipeline {
             }
 
             environment {
-                CI_ENVIRONMENT_URL = 'https://learnjenkinsappp.netlify.app/'
+                CI_ENVIRONMENT_URL = 'https://build-503f7e.netlify.app/'
             }
 
             steps {
